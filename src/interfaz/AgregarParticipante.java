@@ -7,8 +7,6 @@ package interfaz;
 
 import java.sql.Connection;
 import javax.swing.JOptionPane;
-import oracle.jdbc.OraclePreparedStatement;
-import oracle.jdbc.OracleResultSet;
 
 /**
  *
@@ -23,8 +21,8 @@ public class AgregarParticipante extends javax.swing.JFrame {
         initComponents();
     }
     Connection conn=null;
-    OraclePreparedStatement pst =null;
-    OracleResultSet rs=null;
+    //OraclePreparedStatement pst =null;
+    //OracleResultSet rs=null;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -249,7 +247,7 @@ public class AgregarParticipante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
+        /*try{
             String sql = "exec agregarParticipante (?,?,?,?,?,?,?,?,?,?) from dual;";
             pst = (OraclePreparedStatement) conn.prepareStatement(sql);
             Integer ced= Integer.parseInt(this.textCedula.getText());
@@ -276,7 +274,7 @@ public class AgregarParticipante extends javax.swing.JFrame {
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
-        }
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCedulaActionPerformed

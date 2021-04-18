@@ -9,8 +9,8 @@ package interfaz;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
-import oracle.jdbc.OraclePreparedStatement;
-import oracle.jdbc.OracleResultSet;
+//import oracle.jdbc.OraclePreparedStatement;
+//import oracle.jdbc.OracleResultSet;
 
 /**
  *
@@ -25,8 +25,8 @@ public class Pujar extends javax.swing.JFrame {
     Connection conn= login.conn;
     CallableStatement callStmt = null;
         
-    OraclePreparedStatement pst =null;
-    OracleResultSet rs=null;
+    //OraclePreparedStatement pst =null;
+    //OracleResultSet rs=null;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

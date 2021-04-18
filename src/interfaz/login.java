@@ -3,13 +3,14 @@ package interfaz;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
-import oracle.jdbc.OraclePreparedStatement;
-import oracle.jdbc.OracleResultSet;
+import subastas.PostgresConnection;
+//import oracle.jdbc.OraclePreparedStatement;
+//import oracle.jdbc.OracleResultSet;
 public class login extends javax.swing.JFrame {
 
     public static Connection conn=null;
-    OraclePreparedStatement pst =null;
-    OracleResultSet rs=null;
+  //  OraclePreparedStatement pst =null;
+    //OracleResultSet rs=null;
     
     public login() {
         initComponents();
@@ -94,7 +95,15 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
+        PostgresConnection db = PostgresConnection.getInstance();
+        boolean res =db.iniciarSesion(this.jTextField1.getText(), this.jPasswordField1.getText());
+        if(res){
+            principal pri =  new principal(); pri.setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Datos Incorrectos");
+        }
+        /*try{
             conn = ConnecrDb(this.jTextField1.getText(),this.jPasswordField1.getText());
             principal p1=new principal();
             p1.setVisible(true);

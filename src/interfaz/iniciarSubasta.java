@@ -8,8 +8,8 @@ package interfaz;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
-import oracle.jdbc.OraclePreparedStatement;
-import oracle.jdbc.OracleResultSet;
+//import oracle.jdbc.OraclePreparedStatement;
+//import oracle.jdbc.OracleResultSet;
 
 /**
  *
@@ -26,8 +26,8 @@ public class iniciarSubasta extends javax.swing.JFrame {
         Connection conn= login.conn;
         CallableStatement callStmt = null;
         
-        OraclePreparedStatement pst =null;
-        OracleResultSet rs=null;
+        //OraclePreparedStatement pst =null;
+        //OracleResultSet rs=null;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

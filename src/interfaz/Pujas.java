@@ -9,8 +9,8 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Types;
 import javax.swing.JOptionPane;
-import oracle.jdbc.OraclePreparedStatement;
-import oracle.jdbc.OracleResultSet;
+//import oracle.jdbc.OraclePreparedStatement;
+//import oracle.jdbc.OracleResultSet;
 
 
 public class Pujas extends javax.swing.JFrame {
@@ -22,8 +22,8 @@ public class Pujas extends javax.swing.JFrame {
         Connection conn= login.conn;
         CallableStatement callStmt = null;
         
-        OraclePreparedStatement pst =null;
-        OracleResultSet rs=null;
+     //   OraclePreparedStatement pst =null;
+       // OracleResultSet rs=null;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -83,7 +83,7 @@ public class Pujas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
+    /*    try{
             callStmt=conn.prepareCall("{call ?:= listarhistorialpujas (?)}");
             callStmt.registerOutParameter(1, Types.NUMERIC);
             callStmt.setInt(2,Integer.parseInt(this.jTextField1.getText()));
@@ -100,7 +100,7 @@ public class Pujas extends javax.swing.JFrame {
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
-        }
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
