@@ -8,6 +8,7 @@ package subastas;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sun.security.util.Password;
 
 /**
  *
@@ -54,6 +55,33 @@ public class PostgresConnection {
     
     public boolean iniciarSesion(String user, String password){
         return connect(user, password);
+    }
+    
+    public boolean agregarParticipante(int cedula, String alias, String nombre, String direccion, int telCelular, int telCasa, int telTrabajo, int telOtro, String usuario, String pass){
+        try {
+            /*Statement statement = db.createStatement();
+            String query = "call agregarParticipante("+ cedula + ", '" + alias + "', '"+ nombre + "', '" + direccion + "', "+ telCelular + ", " + telTrabajo + ", " +telOtro + ", '" + usuario + "', '" + pass + "')";
+            ResultSet res = statement.executeQuery(query);
+            System.out.println(res);*/
+            PreparedStatement  statement = db.prepareStatement("call agregarParticipante (?,?,?,?,?,?,?,?,?,?)");
+            statement.setInt(1, cedula);
+            statement.setString(2, alias);
+            statement.setString(3,nombre);
+            statement.setString(4, direccion);
+            statement.setInt(5, telCelular);
+            statement.setInt(6, telCasa);
+            statement.setInt(7, telTrabajo);
+            statement.setInt(8, telOtro);
+            statement.setString(9, usuario);
+            statement.setString(10, pass);
+            ResultSet res = statement.executeQuery();
+            
+            
+        }
+        catch(SQLException e){
+            System.err.println(e.getMessage());
+        }
+        return false;
     }
     
     

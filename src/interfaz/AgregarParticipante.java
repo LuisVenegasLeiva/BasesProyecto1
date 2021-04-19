@@ -7,6 +7,7 @@ package interfaz;
 
 import java.sql.Connection;
 import javax.swing.JOptionPane;
+import subastas.PostgresConnection;
 
 /**
  *
@@ -20,7 +21,7 @@ public class AgregarParticipante extends javax.swing.JFrame {
     public AgregarParticipante() {
         initComponents();
     }
-    Connection conn=null;
+    //Connection conn=null;
     //OraclePreparedStatement pst =null;
     //OracleResultSet rs=null;
 
@@ -247,6 +248,10 @@ public class AgregarParticipante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PostgresConnection db = PostgresConnection.getInstance();
+        db.agregarParticipante( Integer.parseInt(this.textCedula.getText()), this.textAlias.getText(), 
+                this.textNombre.getText(), this.textDir.getText(), Integer.parseInt(this.textCel.getText()), Integer.parseInt(this.textCasa.getText())
+                , Integer.parseInt(this.textTrabajo.getText()), Integer.parseInt(this.textOtro.getText()), this.textUsuario.getText(), this.textPass.getText());
         /*try{
             String sql = "exec agregarParticipante (?,?,?,?,?,?,?,?,?,?) from dual;";
             pst = (OraclePreparedStatement) conn.prepareStatement(sql);
