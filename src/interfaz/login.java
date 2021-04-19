@@ -98,10 +98,13 @@ public class login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         PostgresConnection db = PostgresConnection.getInstance();
-        boolean res =db.iniciarSesion(this.jTextField1.getText(), this.jPasswordField1.getText());
-        if(res){
+        String res =db.iniciarSesion(this.jTextField1.getText(), this.jPasswordField1.getText());
+        if(res.equals("a")){
+            System.out.println("admin");
             principal pri =  new principal(); pri.setVisible(true);
             this.dispose();
+        }
+        else if(res.equals("part")){
         }
         else{
             JOptionPane.showMessageDialog(null,"Datos Incorrectos");

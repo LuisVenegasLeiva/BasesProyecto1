@@ -7,7 +7,13 @@ package interfaz;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import subastas.PostgresConnection;
 //import oracle.jdbc.OraclePreparedStatement;
 //import oracle.jdbc.OracleResultSet;
 
@@ -122,7 +128,7 @@ public class iniciarSubasta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
+        /*try{
             CallableStatement cs = conn.prepareCall("{call iniciarSubasta (?,?,?,?,?)}");
             cs.setString(1,this.textCat.getText());
             cs.setString(2,this.textSub.getText());
@@ -134,7 +140,16 @@ public class iniciarSubasta extends javax.swing.JFrame {
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
+        }*/
+        PostgresConnection db = PostgresConnection.getInstance();
+        String strfechaMax  = this.textDuracion.getText();
+        Date fechaMax = new Date();
+        try {
+            new SimpleDateFormat("dd/MM/yyyy").parse(strfechaMax);
+        } catch (ParseException ex) {
+            return;
         }
+        db.iniciarSubasta(this.textCat.getText(), this.textSub.getText(), this.textDesc.getText(), Integer.parseInt(this.textPrecio.getText()), fechaMax);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

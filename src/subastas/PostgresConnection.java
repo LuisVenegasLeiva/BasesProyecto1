@@ -5,7 +5,9 @@
  */
 package subastas;
 
+import java.math.BigDecimal;
 import java.sql.*;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sun.security.util.Password;
@@ -17,6 +19,7 @@ import sun.security.util.Password;
 public class PostgresConnection {
     private static PostgresConnection PGc;
     private Connection db;
+    private PreparedStatement statement;
 //    private String username ;
 //    private String password ;
     
@@ -53,17 +56,31 @@ public class PostgresConnection {
         return false;
     }
     
-    public boolean iniciarSesion(String user, String password){
-        return connect(user, password);
+    public String iniciarSesion(String user, String password){
+        try{
+            connect(user, password);
+            PreparedStatement st = db.prepareStatement("select isAdmin()");
+            ResultSet res = st.executeQuery();
+            res.next();
+            System.out.println(res.getString(1));
+            if(res.getString(1).equals("t")){
+                System.out.println("es admin");
+                return "a";
+            }   
+            else{
+                return "p";
+            }
+        }
+        catch(SQLException e){
+            Logger.getLogger(PostgresConnection.class.getName()).log(Level.SEVERE, null, e);
+            return "err";
+        }
+        
     }
     
     public boolean agregarParticipante(int cedula, String alias, String nombre, String direccion, int telCelular, int telCasa, int telTrabajo, int telOtro, String usuario, String pass){
         try {
-            /*Statement statement = db.createStatement();
-            String query = "call agregarParticipante("+ cedula + ", '" + alias + "', '"+ nombre + "', '" + direccion + "', "+ telCelular + ", " + telTrabajo + ", " +telOtro + ", '" + usuario + "', '" + pass + "')";
-            ResultSet res = statement.executeQuery(query);
-            System.out.println(res);*/
-            PreparedStatement  statement = db.prepareStatement("call agregarParticipante (?,?,?,?,?,?,?,?,?,?)");
+            statement = db.prepareStatement("call agregarParticipante (?,?,?,?,?,?,?,?,?,?)");
             statement.setInt(1, cedula);
             statement.setString(2, alias);
             statement.setString(3,nombre);
@@ -83,6 +100,77 @@ public class PostgresConnection {
         }
         return false;
     }
+    
+    public void agregarAdmin(int cedula, String alias, String nombre, String direccion, int telCelular, int telCasa, int telTrabajo, int telOtro, String usuario, String pass){
+        try {
+            statement = db.prepareStatement("call agregarAdministrador (?,?,?,?,?,?,?,?,?,?)");
+            statement.setInt(1, cedula);
+            statement.setString(2, alias);
+            statement.setString(3,nombre);
+            statement.setString(4, direccion);
+            statement.setInt(5, telCelular);
+            statement.setInt(6, telCasa);
+            statement.setInt(7, telTrabajo);
+            statement.setInt(8, telOtro);
+            statement.setString(9, usuario);
+            statement.setString(10, pass);
+            ResultSet res = statement.executeQuery();
+            
+            
+        }
+        catch(SQLException e){
+            System.err.println(e.getMessage());
+        }
+        //return false;
+    }
+    
+     public void iniciarSubasta(String categoria, String subcategoria, String descripcion, double precio, Date fechaMaxima){
+         try{
+             statement = db.prepareStatement("call iniciarSubasta(?, ?, ?, ?, ?)");
+             statement.setString(1,categoria);
+             statement.setString(2, subcategoria);
+             statement.setString(3,descripcion);
+             statement.setDouble(4, precio);
+             statement.setDate(5,new java.sql.Date(fechaMaxima.getTime()));
+             statement.executeQuery(); 
+         }catch(SQLException e){
+             System.err.println(e.getMessage());
+         }
+    }
+     
+     public void pujar(int subasta, double monto ){
+         try{
+             statement = db.prepareStatement("call pujar (?, ?)");
+             statement.setInt(1, subasta);
+             statement.setBigDecimal(2, BigDecimal.valueOf(monto));            
+             statement.executeQuery(); 
+         }catch(SQLException e){
+             System.err.println(e.getMessage());
+         }
+         
+     }
+     
+    public void getPujas(int subasta){
+    try{
+            CallableStatement statement=db.prepareCall("{call ?:= listarhistorialpujas (?)}");
+            statement.registerOutParameter(1, Types.NUMERIC);
+            statement.setInt(2,subasta);
+            statement.executeUpdate();
+            
+            //pst = (OraclePreparedStatement) conn.prepareStatement("select listarhistorialpujas (?) from dual;");
+            //pst.setInt(1,Integer.parseInt(this.jTextField1.getText()));
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                System.out.println(rs.getInt(1));
+                //this.jTextArea1.setText(rs.toString());
+            }else{
+                 //JOptionPane.showMessageDialog(null,"El dato ingresado no es correcto");
+            }
+        }catch(Exception e){
+            //JOptionPane.showMessageDialog(null, e);
+        }   
+    }
+    
     
     
     
