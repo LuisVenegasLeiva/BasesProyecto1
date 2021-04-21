@@ -17,6 +17,14 @@ public class Subastas extends javax.swing.JFrame {
     public Subastas() {
         initComponents();
         TablaSubastas.add(new LineaSubasta());
+        TablaSubastas.add(new LineaSubasta());
+        TablaSubastas.add(new LineaSubasta());
+        TablaSubastas.add(new LineaSubasta());
+        TablaSubastas.add(new LineaSubasta());
+        TablaSubastas.add(new LineaSubasta());
+        TablaSubastas.add(new LineaSubasta());
+        TablaSubastas.add(new LineaSubasta());
+        TablaSubastas.add(new LineaSubasta());
     }
 
     /**
@@ -45,7 +53,7 @@ public class Subastas extends javax.swing.JFrame {
             .addGap(0, 35, Short.MAX_VALUE)
         );
 
-        TablaSubastas.setLayout(new java.awt.GridLayout(1, 1, 0, 1));
+        TablaSubastas.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPane1.setViewportView(TablaSubastas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
