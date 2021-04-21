@@ -5,8 +5,12 @@
  */
 package subastas;
 
+import Modelo.Subasta;
 import java.math.BigDecimal;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -149,6 +153,49 @@ public class PostgresConnection {
          }
          
      }
+     
+    public ArrayList<Subasta> getSubastas(){
+         try{
+            statement=db.prepareStatement("select listarsubastas()");
+            //pst = (OraclePreparedStatement) conn.prepareStatement("select listarhistorialpujas (?) from dual;");
+            //pst.setInt(1,Integer.parseInt(this.jTextField1.getText()));
+            ResultSet rs = statement.executeQuery();
+            System.out.println("excecute");
+            ArrayList<Subasta> subastas = new ArrayList<Subasta>();
+            while(rs.next()){
+                String d= rs.getString(1);
+                d = d.replace("(", "");
+                d = d.replace(")", "");
+                String[] res = d.split(",");
+                int id = Integer.parseInt(res[0]);
+                int idItem = Integer.parseInt(res[1]);
+                float precioFinal = Float.parseFloat(res[2]);
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                Date fechaInicial = null;
+                Date fechaFinal = null;
+                try {
+                    fechaInicial = formato.parse(res[3]);
+                    fechaInicial = formato.parse(res[4]);
+                } 
+                catch (ParseException ex) 
+                {
+                    System.out.println(ex);
+                } 
+                int vendido = Integer.parseInt(res[5]);
+                float precioInicial = Float.parseFloat(res[6]);
+                String categoria = res[7];
+                String subcategoria = res[8];
+                String descripcion = res[9];
+                Subasta s = new Subasta(id, idItem, fechaInicial, fechaFinal,false,  precioInicial, precioFinal, categoria, subcategoria, descripcion);
+                subastas.add(s);
+            }
+            return subastas;
+        }catch(SQLException e){
+            //JOptionPane.showMessageDialog(null, e);
+            System.out.println(e.getMessage());
+        }
+         return null;
+    }
      
     public void getPujas(int subasta){
     try{

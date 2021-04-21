@@ -5,6 +5,10 @@
  */
 package interfaz;
 
+import Modelo.Subasta;
+import java.util.ArrayList;
+import subastas.PostgresConnection;
+
 /**
  *
  * @author lalem
@@ -15,16 +19,13 @@ public class Subastas extends javax.swing.JFrame {
      * Creates new form Subastas
      */
     public Subastas() {
+        PostgresConnection db = PostgresConnection.getInstance();
+        ArrayList<Subasta> subastas = db.getSubastas();
+        System.out.println("Subasta");
         initComponents();
-        TablaSubastas.add(new LineaSubasta());
-        TablaSubastas.add(new LineaSubasta());
-        TablaSubastas.add(new LineaSubasta());
-        TablaSubastas.add(new LineaSubasta());
-        TablaSubastas.add(new LineaSubasta());
-        TablaSubastas.add(new LineaSubasta());
-        TablaSubastas.add(new LineaSubasta());
-        TablaSubastas.add(new LineaSubasta());
-        TablaSubastas.add(new LineaSubasta());
+        for(Subasta s: subastas){
+            tablaSubastas.add(new LineaSubasta(s));
+        }
     }
 
     /**
@@ -38,7 +39,7 @@ public class Subastas extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaSubastas = new javax.swing.JPanel();
+        tablaSubastas = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,8 +54,8 @@ public class Subastas extends javax.swing.JFrame {
             .addGap(0, 35, Short.MAX_VALUE)
         );
 
-        TablaSubastas.setLayout(new java.awt.GridLayout(0, 1));
-        jScrollPane1.setViewportView(TablaSubastas);
+        tablaSubastas.setLayout(new java.awt.GridLayout(0, 1));
+        jScrollPane1.setViewportView(tablaSubastas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,8 +114,8 @@ public class Subastas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel TablaSubastas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel tablaSubastas;
     // End of variables declaration//GEN-END:variables
 }
