@@ -5,6 +5,7 @@
  */
 package subastas;
 
+import Modelo.Puja;
 import Modelo.Subasta;
 import java.math.BigDecimal;
 import java.sql.*;
@@ -175,13 +176,13 @@ public class PostgresConnection {
                 Date fechaFinal = null;
                 try {
                     fechaInicial = formato.parse(res[3]);
-                    fechaInicial = formato.parse(res[4]);
+                    fechaFinal = formato.parse(res[4]);
                 } 
                 catch (ParseException ex) 
                 {
                     System.out.println(ex);
                 } 
-                int vendido = Integer.parseInt(res[5]);
+                //int vendido = Integer.parseInt(res[5]);
                 float precioInicial = Float.parseFloat(res[6]);
                 String categoria = res[7];
                 String subcategoria = res[8];
@@ -197,25 +198,41 @@ public class PostgresConnection {
          return null;
     }
      
-    public void getPujas(int subasta){
+    public ArrayList<Puja> getPujas(int subasta){
     try{
-            CallableStatement statement=db.prepareCall("{call ?:= listarhistorialpujas (?)}");
-            statement.registerOutParameter(1, Types.NUMERIC);
-            statement.setInt(2,subasta);
-            statement.executeUpdate();
-            
+            System.out.println(subasta);
+             statement=db.prepareStatement("select listarhistorialpujas (?)");
+            statement.setInt(1,subasta);
             //pst = (OraclePreparedStatement) conn.prepareStatement("select listarhistorialpujas (?) from dual;");
             //pst.setInt(1,Integer.parseInt(this.jTextField1.getText()));
             ResultSet rs = statement.executeQuery();
-            if(rs.next()){
-                System.out.println(rs.getInt(1));
-                //this.jTextArea1.setText(rs.toString());
-            }else{
-                 //JOptionPane.showMessageDialog(null,"El dato ingresado no es correcto");
+            ArrayList<Puja> pujas = new ArrayList<Puja>();
+            while(rs.next()){
+                String d= rs.getString(1);
+                d = d.replace("(", "");
+                d = d.replace(")", "");
+                String[] res = d.split(",");
+                int id = Integer.parseInt(res[0]);
+                int idSubasta = Integer.parseInt(res[1]);
+                int idC = Integer.parseInt(res[2]);
+                String comprador = res[3];
+                double monto = Double.parseDouble(res[4]);
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = null;
+                try {
+                    fecha = formato.parse(res[5]);
+                } 
+                catch (ParseException ex) 
+                {
+                    System.out.println(ex);
+                } 
+                pujas.add(new Puja(id, idSubasta, comprador, monto, fecha));
             }
-        }catch(Exception e){
-            //JOptionPane.showMessageDialog(null, e);
-        }   
+            return pujas;
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }  
+        return null;
     }
     
     

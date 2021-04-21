@@ -18,6 +18,7 @@ public class Subasta {
     private Date fechaLimite;
     private int iditem;
     private float precioInicial;
+    private float precioFinal;
     private String categoría;
     private String subcategoria;
     private String descripcion;
@@ -29,9 +30,18 @@ public class Subasta {
         this.fechaLimite = fechaLimite;
         this.iditem = iditem;
         this.precioInicial = precioInicial;
+        this.precioFinal = precioFinal;
         this.categoría = categoría;
         this.subcategoria = subcategoria;
         this.descripcion = descripcion;
+    }
+
+    public float getPrecioFinal() {
+        return precioFinal;
+    }
+
+    public void setPrecioFinal(float precioFinal) {
+        this.precioFinal = precioFinal;
     }
 
     public int getId() {
