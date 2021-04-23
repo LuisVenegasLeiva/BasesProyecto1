@@ -83,7 +83,7 @@ public class PostgresConnection {
         
     }
     
-    public boolean agregarParticipante(int cedula, String alias, String nombre, String direccion, int telCelular, int telCasa, int telTrabajo, int telOtro, String usuario, String pass){
+    public boolean agregarParticipante(int cedula, String alias, String nombre, String direccion, int telCelular, int telCasa, int telTrabajo, int telOtro, String pass){
         try {
             statement = db.prepareStatement("call agregarParticipante (?,?,?,?,?,?,?,?,?,?)");
             statement.setInt(1, cedula);
@@ -94,10 +94,9 @@ public class PostgresConnection {
             statement.setInt(6, telCasa);
             statement.setInt(7, telTrabajo);
             statement.setInt(8, telOtro);
-            statement.setString(9, usuario);
-            statement.setString(10, pass);
+            statement.setString(9, pass);
             ResultSet res = statement.executeQuery();
-            
+            return res.next();
             
         }
         catch(SQLException e){
@@ -106,7 +105,7 @@ public class PostgresConnection {
         return false;
     }
     
-    public void agregarAdmin(int cedula, String alias, String nombre, String direccion, int telCelular, int telCasa, int telTrabajo, int telOtro, String usuario, String pass){
+    public boolean agregarAdmin(int cedula, String alias, String nombre, String direccion, int telCelular, int telCasa, int telTrabajo, int telOtro, String pass){
         try {
             statement = db.prepareStatement("call agregarAdministrador (?,?,?,?,?,?,?,?,?,?)");
             statement.setInt(1, cedula);
@@ -117,26 +116,24 @@ public class PostgresConnection {
             statement.setInt(6, telCasa);
             statement.setInt(7, telTrabajo);
             statement.setInt(8, telOtro);
-            statement.setString(9, usuario);
-            statement.setString(10, pass);
+            statement.setString(9, pass);
             ResultSet res = statement.executeQuery();
-            
+            return res.next();
             
         }
         catch(SQLException e){
             System.err.println(e.getMessage());
         }
-        //return false;
+        return false;
     }
     
-     public void iniciarSubasta(String categoria, String subcategoria, String descripcion, double precio, Date fechaMaxima){
+     public void iniciarSubasta( int subcategoria, String descripcion, double precio, Date fechaMaxima){
          try{
-             statement = db.prepareStatement("call iniciarSubasta(?, ?, ?, ?, ?)");
-             statement.setString(1,categoria);
-             statement.setString(2, subcategoria);
-             statement.setString(3,descripcion);
-             statement.setDouble(4, precio);
-             statement.setDate(5,new java.sql.Date(fechaMaxima.getTime()));
+             statement = db.prepareStatement("call iniciarSubasta(?, ?, ?, ?)");
+             statement.setInt(1, subcategoria);
+             statement.setString(2,descripcion);
+             statement.setDouble(3, precio);
+             statement.setDate(4,new java.sql.Date(fechaMaxima.getTime()));
              statement.executeQuery(); 
          }catch(SQLException e){
              System.err.println(e.getMessage());
@@ -233,6 +230,50 @@ public class PostgresConnection {
             System.out.println(e.getMessage());
         }  
         return null;
+    }
+    
+    public void getUsuario(int cedula){
+        
+    }
+    
+    public ArrayList<String[]> getCategoria(){
+          try{
+             statement=db.prepareStatement("select listarcategorias ()");
+            ResultSet rs = statement.executeQuery();
+            ArrayList<String[]> categorias = new ArrayList<String[]>();
+            while(rs.next()){
+                String d= rs.getString(1);
+                d = d.replace("(", "");
+                d = d.replace(")", "");
+                String[] res = d.split(",");
+                categorias.add(res);
+            }
+            return categorias;
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }  
+        return null;
+    }
+    
+    public ArrayList<String[]> getSubCategoria(String nombre){
+        ArrayList<String[]> categorias = new ArrayList<String[]>();
+          try{
+             statement=db.prepareStatement("select listarsubcategorias(?)");
+             statement.setString(1,nombre);
+            ResultSet rs = statement.executeQuery();
+            
+            while(rs.next()){
+                String d= rs.getString(1);
+                d = d.replace("(", "");
+                d = d.replace(")", "");
+                String[] res = d.split(",");
+                categorias.add(res);
+            }
+            return categorias;
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }  
+        return categorias;
     }
     
     

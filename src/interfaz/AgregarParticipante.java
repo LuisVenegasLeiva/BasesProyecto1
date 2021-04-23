@@ -38,7 +38,6 @@ public class AgregarParticipante extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -54,7 +53,6 @@ public class AgregarParticipante extends javax.swing.JFrame {
         textCasa = new javax.swing.JTextField();
         textTrabajo = new javax.swing.JTextField();
         textOtro = new javax.swing.JTextField();
-        textUsuario = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -66,8 +64,6 @@ public class AgregarParticipante extends javax.swing.JFrame {
         jLabel3.setText("Nombre");
 
         jLabel4.setText("Direccion");
-
-        jLabel5.setText("Usuario");
 
         jLabel6.setText("Celular");
 
@@ -134,12 +130,6 @@ public class AgregarParticipante extends javax.swing.JFrame {
             }
         });
 
-        textUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textUsuarioActionPerformed(evt);
-            }
-        });
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setText("Ingrese los datos del Usuario");
 
@@ -150,10 +140,6 @@ public class AgregarParticipante extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(38, 38, 38)
-                        .addComponent(textUsuario))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(38, 38, 38)
@@ -233,10 +219,6 @@ public class AgregarParticipante extends javax.swing.JFrame {
                     .addComponent(textOtro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(textUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(textPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
@@ -251,35 +233,8 @@ public class AgregarParticipante extends javax.swing.JFrame {
         PostgresConnection db = PostgresConnection.getInstance();
         db.agregarParticipante( Integer.parseInt(this.textCedula.getText()), this.textAlias.getText(), 
                 this.textNombre.getText(), this.textDir.getText(), Integer.parseInt(this.textCel.getText()), Integer.parseInt(this.textCasa.getText())
-                , Integer.parseInt(this.textTrabajo.getText()), Integer.parseInt(this.textOtro.getText()), this.textUsuario.getText(), this.textPass.getText());
-        /*try{
-            String sql = "exec agregarParticipante (?,?,?,?,?,?,?,?,?,?) from dual;";
-            pst = (OraclePreparedStatement) conn.prepareStatement(sql);
-            Integer ced= Integer.parseInt(this.textCedula.getText());
-            pst.setInt(1,ced );
-            pst.setString(2, this.textAlias.getText());
-            pst.setString(3, this.textNombre.getText());
-            pst.setString(4, this.textDir.getText());
-            Integer cel= Integer.parseInt(this.textCel.getText());
-            pst.setInt(5, cel);
-            Integer casa= Integer.parseInt(this.textCasa.getText());
-            pst.setInt(6, casa);
-            Integer trab= Integer.parseInt(this.textTrabajo.getText());
-            pst.setInt(7, trab);
-            Integer otro= Integer.parseInt(this.textOtro.getText());
-            pst.setInt(8, otro);
-            pst.setString(9, this.textUsuario.getText());
-            pst.setString(10, this.textPass.getText());
-            
-            rs = (OracleResultSet) pst.executeQuery();
-            if(rs.next()){
-                JOptionPane.showMessageDialog(null,"Agregado Correctamente");
-            }else{
-                 JOptionPane.showMessageDialog(null,"Datos Incorrectos o Incompletos");
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }*/
+                , Integer.parseInt(this.textTrabajo.getText()), Integer.parseInt(this.textOtro.getText()),  this.textPass.getText());
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCedulaActionPerformed
@@ -313,10 +268,6 @@ public class AgregarParticipante extends javax.swing.JFrame {
     private void textOtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textOtroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textOtroActionPerformed
-
-    private void textUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -361,7 +312,6 @@ public class AgregarParticipante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -375,6 +325,5 @@ public class AgregarParticipante extends javax.swing.JFrame {
     private javax.swing.JTextField textOtro;
     private javax.swing.JPasswordField textPass;
     private javax.swing.JTextField textTrabajo;
-    private javax.swing.JTextField textUsuario;
     // End of variables declaration//GEN-END:variables
 }
