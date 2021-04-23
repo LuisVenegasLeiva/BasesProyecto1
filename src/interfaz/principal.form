@@ -37,6 +37,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jButton1" pref="209" max="32767" attributes="0"/>
                           <Component id="btnListarPujas" max="32767" attributes="0"/>
+                          <Component id="jButton3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                   </Group>
@@ -64,7 +65,10 @@
                   <Component id="btnPujar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="308" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnAgregarParticipante" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -131,6 +135,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="MIs subastas"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

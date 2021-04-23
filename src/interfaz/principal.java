@@ -34,6 +34,7 @@ public class principal extends javax.swing.JFrame {
         btnIniciarSubasta = new javax.swing.JButton();
         btnPujar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -87,6 +88,8 @@ public class principal extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("MIs subastas");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,7 +105,8 @@ public class principal extends javax.swing.JFrame {
                         .addGap(226, 226, 226)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                            .addComponent(btnListarPujas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnListarPujas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(101, 101, 101))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgregarParticipante)
@@ -122,7 +126,9 @@ public class principal extends javax.swing.JFrame {
                     .addComponent(btnListarPujas)
                     .addComponent(btnPujar))
                 .addGap(26, 26, 26)
-                .addComponent(jButton2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarParticipante)
@@ -210,5 +216,6 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JButton btnPujar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
 }
