@@ -1,15 +1,22 @@
 package interfaz;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import oracle.jdbc.OraclePreparedStatement;
 import oracle.jdbc.OracleResultSet;
+import oracle.jdbc.OracleTypes;
 public class login extends javax.swing.JFrame {
 
     public static Connection conn=null;
-    OraclePreparedStatement pst =null;
+    OraclePreparedStatement cs =null;
     OracleResultSet rs=null;
+    CallableStatement callStmt = null;
     
     public login() {
         initComponents();
@@ -25,7 +32,7 @@ public class login extends javax.swing.JFrame {
         }
         return null;
     }
-
+        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -95,31 +102,29 @@ public class login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
-            conn = ConnecrDb(this.jTextField1.getText(),this.jPasswordField1.getText());
-            principal p1=new principal();
-            p1.setVisible(true);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Datos Incorrectos");
-        }    
+            conn = ConnecrDb(this.jTextField1.getText(),this.jPasswordField1.getText()); 
+            
+            CallableStatement cs = conn.prepareCall("{call ajustarSistema() ");
+            boolean ej =cs.execute();
+            
+            String query = "{ ? = call isAdmin()} ";
+            CallableStatement stmt = conn.prepareCall(query);
+            stmt.registerOutParameter(1, java.sql.Types.NUMERIC);
 
-        /*
-
-        try{
-            String sql = "Select * from login where user_id=? and password =?";
-            pst = (OraclePreparedStatement) conn.prepareStatement(sql);
-            pst.setString(1, this.jTextField1.getText());
-            pst.setString(2, this.jPasswordField1.getText());
-            rs = (OracleResultSet) pst.executeQuery();
-            if(rs.next()){
-                principal p1=new principal();
-                p1.setVisible(true);
+            // execute and retrieve the result set
+            stmt.execute();
+            System.out.println(stmt.getInt(1));
+            if(stmt.getInt(1)==1){
+                menuParticipante mp1=new menuParticipante();
+                mp1.setVisible(true);
             }else{
-                 JOptionPane.showMessageDialog(null,"Datos Incorrectos");
+                menuAdmin ma1=new menuAdmin();
+                ma1.setVisible(true);
             }
+            
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-        */
+            JOptionPane.showMessageDialog(null,e);
+        }    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
