@@ -42,8 +42,6 @@ public class DatosComprador extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        textPass = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         textCedula = new javax.swing.JTextField();
         textNombre = new javax.swing.JTextField();
@@ -56,6 +54,7 @@ public class DatosComprador extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setFocusTraversalPolicyProvider(true);
 
         jLabel1.setText("Cedula");
 
@@ -73,57 +72,63 @@ public class DatosComprador extends javax.swing.JFrame {
 
         jLabel9.setText("TelOtro");
 
-        jLabel10.setText("Contraseña");
-
-        jButton1.setText("Agregar");
+        jButton1.setText("Ok");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        textCedula.setFocusTraversalPolicyProvider(true);
         textCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textCedulaActionPerformed(evt);
             }
         });
 
+        textNombre.setFocusTraversalPolicyProvider(true);
         textNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textNombreActionPerformed(evt);
             }
         });
 
+        textDir.setFocusTraversalPolicyProvider(true);
         textDir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textDirActionPerformed(evt);
             }
         });
 
+        textAlias.setFocusTraversalPolicyProvider(true);
         textAlias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textAliasActionPerformed(evt);
             }
         });
 
+        textCel.setFocusTraversalPolicyProvider(true);
         textCel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textCelActionPerformed(evt);
             }
         });
 
+        textCasa.setFocusTraversalPolicyProvider(true);
         textCasa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textCasaActionPerformed(evt);
             }
         });
 
+        textTrabajo.setFocusTraversalPolicyProvider(true);
         textTrabajo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textTrabajoActionPerformed(evt);
             }
         });
 
+        textOtro.setFocusTraversalPolicyProvider(true);
         textOtro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textOtroActionPerformed(evt);
@@ -154,14 +159,11 @@ public class DatosComprador extends javax.swing.JFrame {
                         .addComponent(textCasa))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
+                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textPass)
                                 .addComponent(textCedula)
                                 .addComponent(textAlias, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
                             .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -173,7 +175,8 @@ public class DatosComprador extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(textDir, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                            .addComponent(textCel))))
+                            .addComponent(textCel)))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(117, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -218,12 +221,8 @@ public class DatosComprador extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(textOtro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(textPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
@@ -249,10 +248,6 @@ public class DatosComprador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textDirActionPerformed
 
-    private void textAliasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAliasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textAliasActionPerformed
-
     private void textCelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textCelActionPerformed
@@ -268,6 +263,10 @@ public class DatosComprador extends javax.swing.JFrame {
     private void textOtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textOtroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textOtroActionPerformed
+
+    private void textAliasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAliasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textAliasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,7 +307,6 @@ public class DatosComprador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -324,7 +322,6 @@ public class DatosComprador extends javax.swing.JFrame {
     private javax.swing.JTextField textDir;
     private javax.swing.JTextField textNombre;
     private javax.swing.JTextField textOtro;
-    private javax.swing.JPasswordField textPass;
     private javax.swing.JTextField textTrabajo;
     // End of variables declaration//GEN-END:variables
 }

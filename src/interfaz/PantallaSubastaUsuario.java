@@ -17,17 +17,16 @@ public class PantallaSubastaUsuario extends javax.swing.JFrame {
     /**
      * Creates new form PantallaSubasta
      */
-    Subasta subasta;
-    public PantallaSubastaUsuario(Subasta subasta) {
+    String[] subasta;
+    public PantallaSubastaUsuario(String[] str) {
         initComponents();
-        this.subasta = subasta;
-        Descripcion.setText(subasta.getDescripcion());
-        CatLbl.setText(subasta.getCategoría());
-        SubcatLbl.setText(subasta.getSubcategoria());
-        PrecioLBL.setText(subasta.getPrecioFinal()+"");
-        FechaInicio.setText(subasta.getFechaInicio().toString());
-        System.out.println(subasta.getFechaLimite());
-        FechaLim.setText(subasta.getFechaLimite().toString());
+        this.subasta = str;
+        Descripcion.setText(str[9]);
+        CatLbl.setText(str[7]);
+        SubcatLbl.setText(str[8]);
+        PrecioLBL.setText(str[3]);
+        FechaInicio.setText(str[4]);
+        FechaLim.setText(str[5]);
     }
 
     /**
@@ -205,7 +204,7 @@ public class PantallaSubastaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new PantallaPujas(subasta.getId()).setVisible(true);
+        new PantallaPujas(Integer.parseInt(subasta[0])).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
