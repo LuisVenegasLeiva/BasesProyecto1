@@ -276,6 +276,66 @@ public class PostgresConnection {
         return categorias;
     }
     
+    public ArrayList<String[]> getMisSubastas(){
+        ArrayList<String[]> categorias = new ArrayList<String[]>();
+          try{
+             statement=db.prepareStatement("select subastasusuarioactual()");
+            ResultSet rs = statement.executeQuery();
+            
+            while(rs.next()){
+                String d= rs.getString(1);
+                d = d.replace("(", "");
+                d = d.replace(")", "");
+                String[] res = d.split(",");
+                categorias.add(res);
+            }
+            return categorias;
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }  
+        return categorias;
+    }
+    
+    
+    public ArrayList<String[]> getSubastasGanadas(String nombre){
+        ArrayList<String[]> categorias = new ArrayList<String[]>();
+          try{
+             statement=db.prepareStatement("select subastasganadas()");
+            ResultSet rs = statement.executeQuery();
+            
+            while(rs.next()){
+                String d= rs.getString(1);
+                d = d.replace("(", "");
+                d = d.replace(")", "");
+                String[] res = d.split(",");
+                categorias.add(res);
+            }
+            return categorias;
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }  
+        return categorias;
+    }
+    
+    public ArrayList<String[]> getSubastasGanadas(){
+        ArrayList<String[]> categorias = new ArrayList<String[]>();
+          try{
+             statement=db.prepareStatement("select subastasganadas()");
+            ResultSet rs = statement.executeQuery();
+            
+            while(rs.next()){
+                String d= rs.getString(1);
+                d = d.replace("(", "");
+                d = d.replace(")", "");
+                String[] res = d.split(",");
+                categorias.add(res);
+            }
+            return categorias;
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }  
+        return categorias;
+    }
     
     
     

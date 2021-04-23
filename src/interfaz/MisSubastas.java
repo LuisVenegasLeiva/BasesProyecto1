@@ -5,6 +5,9 @@
  */
 package interfaz;
 
+import java.util.ArrayList;
+import subastas.PostgresConnection;
+
 /**
  *
  * @author mrluis137
@@ -14,8 +17,16 @@ public class MisSubastas extends javax.swing.JFrame {
     /**
      * Creates new form MisSubastas
      */
+    
+     PostgresConnection db = PostgresConnection.getInstance();
+     
     public MisSubastas() {
         initComponents();
+        ArrayList<String[]> subastas = db.getMisSubastas();
+        //System.out.println(Cat.getSelectedIndex());
+        for (String[] str:subastas){
+            panelSubastas.add(new LineaMiSubasta(str));
+        }
     }
 
     /**
@@ -31,7 +42,7 @@ public class MisSubastas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Filtro = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Subastas = new javax.swing.JPanel();
+        panelSubastas = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,8 +71,8 @@ public class MisSubastas extends javax.swing.JFrame {
                 .addGap(40, 40, 40))
         );
 
-        Subastas.setLayout(new java.awt.GridLayout());
-        jScrollPane1.setViewportView(Subastas);
+        panelSubastas.setLayout(new java.awt.GridLayout(1, 0));
+        jScrollPane1.setViewportView(panelSubastas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,9 +129,9 @@ public class MisSubastas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Filtro;
-    private javax.swing.JPanel Subastas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelSubastas;
     // End of variables declaration//GEN-END:variables
 }
