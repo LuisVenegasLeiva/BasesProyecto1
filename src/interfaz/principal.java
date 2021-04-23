@@ -33,6 +33,10 @@ public class principal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btnIniciarSubasta = new javax.swing.JButton();
         btnPujar = new javax.swing.JButton();
+        btnListarPujas1 = new javax.swing.JButton();
+        btnListarPujas2 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -59,6 +63,11 @@ public class principal extends javax.swing.JFrame {
         });
 
         jButton1.setText("ListarSubastas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btnIniciarSubasta.setText("IniciarSubasta");
         btnIniciarSubasta.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +83,34 @@ public class principal extends javax.swing.JFrame {
             }
         });
 
+        btnListarPujas1.setText("Listar Subastas Creadas de Un usuario");
+        btnListarPujas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarPujas1ActionPerformed(evt);
+            }
+        });
+
+        btnListarPujas2.setText("Listar Subastas Ganadas de Un usuario");
+        btnListarPujas2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarPujas2ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Actualizar datos de Usuario");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Modificar Valores");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,18 +120,25 @@ public class principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnIniciarSubasta, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                            .addComponent(btnIniciarSubasta, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                             .addComponent(btnPujar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(226, 226, 226)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                            .addComponent(btnListarPujas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnListarPujas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnListarPujas1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnListarPujas2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(101, 101, 101))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAgregarParticipante)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAgregarAdmin)
-                        .addContainerGap(455, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAgregarParticipante)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAgregarAdmin)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,11 +151,18 @@ public class principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnListarPujas)
                     .addComponent(btnPujar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 356, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addComponent(btnListarPujas1)
+                .addGap(45, 45, 45)
+                .addComponent(btnListarPujas2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarParticipante)
-                    .addComponent(btnAgregarAdmin))
-                .addGap(36, 36, 36))
+                    .addComponent(btnAgregarAdmin)
+                    .addComponent(jButton3))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
 
         pack();
@@ -123,7 +174,8 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarParticipanteActionPerformed
 
     private void btnAgregarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAdminActionPerformed
-
+        AgregarAdministrador aa1=new AgregarAdministrador();
+        aa1.setVisible(true);
     }//GEN-LAST:event_btnAgregarAdminActionPerformed
 
     private void btnListarPujasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarPujasActionPerformed
@@ -140,6 +192,31 @@ public class principal extends javax.swing.JFrame {
         Pujar puj1=new Pujar();
         puj1.setVisible(true);
     }//GEN-LAST:event_btnPujarActionPerformed
+
+    private void btnListarPujas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarPujas1ActionPerformed
+        subastasUsuario su1= new subastasUsuario();
+        su1.setVisible(true);
+    }//GEN-LAST:event_btnListarPujas1ActionPerformed
+
+    private void btnListarPujas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarPujas2ActionPerformed
+        subastasGanadas sg1= new subastasGanadas();
+        sg1.setVisible(true);
+    }//GEN-LAST:event_btnListarPujas2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        actualizaUsuario au1=new actualizaUsuario();
+        au1.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        listarSubastas ls1=new listarSubastas();
+        ls1.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        valores va1= new valores();
+        va1.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,7 +258,11 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarParticipante;
     private javax.swing.JButton btnIniciarSubasta;
     private javax.swing.JButton btnListarPujas;
+    private javax.swing.JButton btnListarPujas1;
+    private javax.swing.JButton btnListarPujas2;
     private javax.swing.JButton btnPujar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
 }

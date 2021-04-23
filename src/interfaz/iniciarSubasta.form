@@ -34,14 +34,16 @@
               </Group>
               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="textDuracion" pref="130" max="32767" attributes="0"/>
-                  <Component id="textPrecio" pref="130" max="32767" attributes="0"/>
-                  <Component id="textDesc" pref="130" max="32767" attributes="0"/>
-                  <Component id="textSub" pref="130" max="32767" attributes="0"/>
-                  <Component id="textCat" max="32767" attributes="0"/>
-                  <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jButton1" alignment="0" pref="157" max="32767" attributes="0"/>
+                      <Component id="textDuracion" alignment="0" max="32767" attributes="0"/>
+                      <Component id="textPrecio" alignment="0" max="32767" attributes="0"/>
+                      <Component id="textDesc" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="comboCat" alignment="0" pref="346" max="32767" attributes="0"/>
+                  <Component id="comboSub" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="97" max="32767" attributes="0"/>
+              <EmptySpace pref="179" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,12 +53,12 @@
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="textCat" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboCat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="textSub" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboSub" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -106,10 +108,6 @@
         <Property name="text" type="java.lang.String" value="Duraci&#xf3;n(minutos)"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textCat">
-    </Component>
-    <Component class="javax.swing.JTextField" name="textSub">
-    </Component>
     <Component class="javax.swing.JTextField" name="textDesc">
     </Component>
     <Component class="javax.swing.JTextField" name="textPrecio">
@@ -123,6 +121,31 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboCat">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="comboCatItemStateChanged"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboCatActionPerformed"/>
+        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="comboCatPropertyChange"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboSub">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

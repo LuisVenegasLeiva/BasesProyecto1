@@ -18,15 +18,15 @@ import oracle.jdbc.OracleTypes;
  *
  * @author luisv
  */
-public class iniciarSubasta extends javax.swing.JFrame {
+public class listarSubastas extends javax.swing.JFrame {
 
     /**
-     * Creates new form iniciarSubasta
+     * Creates new form listarSubastas
      */
-    public iniciarSubasta() {
+    public listarSubastas() {
         initComponents();
-         
-        try{    
+        
+            try{    
             String query = "begin ? := listarCategorias(); end;";
 
             CallableStatement stmt = conn.prepareCall(query);
@@ -48,47 +48,51 @@ public class iniciarSubasta extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-        
-        
     }
+
         Connection conn= login.conn;
         CallableStatement callStmt = null;
         
         OraclePreparedStatement pst =null;
         OracleResultSet rs=null;
 
-        
-        
-        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        textDesc = new javax.swing.JTextField();
-        textPrecio = new javax.swing.JTextField();
-        textDuracion = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         comboCat = new javax.swing.JComboBox<>();
         comboSub = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Categorïa");
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jLabel2.setText("Sub Categorïa");
+            },
+            new String [] {
+                "Id Subasta", "Descripcion", "Precio Inicial", "Ultimo Precio", "Fecha limite"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
-        jLabel3.setText("Precio");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabla);
 
-        jLabel4.setText("Descripción");
+        jLabel1.setText("Categoría");
 
-        jLabel5.setText("Duración(minutos)");
+        jLabel2.setText("Sub-Categoría");
 
-        jButton1.setText("Iniciar Subasta");
+        jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -116,50 +120,40 @@ public class iniciarSubasta extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5))
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                        .addComponent(textDuracion)
-                        .addComponent(textPrecio)
-                        .addComponent(textDesc))
-                    .addComponent(comboCat, 0, 346, Short.MAX_VALUE)
-                    .addComponent(comboSub, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(179, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                            .addComponent(comboCat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboSub, 0, 346, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(comboCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comboCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(comboSub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(comboSub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(textDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(textPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(textDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
                 .addComponent(jButton1)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -167,35 +161,52 @@ public class iniciarSubasta extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
-            CallableStatement cs = conn.prepareCall("{call iniciarSubasta (?,?,?,?,?)}");
-            cs.setString(1,this.comboCat.getSelectedItem().toString());
-            cs.setString(2,this.comboSub.getSelectedItem().toString());
-            cs.setString(3,this.textDesc.getText());
-            cs.setInt(4,Integer.parseInt(this.textPrecio.getText()));
-            cs.setInt(5,Integer.parseInt(this.textDuracion.getText()));
-            boolean ej =cs.execute();
-            JOptionPane.showMessageDialog(null,"Agregada Correctamente");
+            DefaultTableModel dm = (DefaultTableModel) tabla.getModel();
+            int rowCount = dm.getRowCount();
+            for (int i = rowCount - 1; i >= 0; i--) {
+            dm.removeRow(i);
+            }
+            
+            String query = "begin ? := listarsubastas(?,?); end;";
 
+            CallableStatement stmt = conn.prepareCall(query);
+
+            // register the type of the out param - an Oracle specific type
+            stmt.registerOutParameter(1, OracleTypes.CURSOR);
+
+            // set the in param
+            String cat = this.comboCat.getSelectedItem().toString();
+            stmt.setString(2, cat);
+            
+            String sub = this.comboSub.getSelectedItem().toString();
+            stmt.setString(3, sub);
+            System.out.println(cat+" "+sub);
+            // execute and retrieve the result set
+            stmt.execute();
+            ResultSet rs = (ResultSet)stmt.getObject(1);
+
+            // print the results
+            DefaultTableModel mod = (DefaultTableModel) tabla.getModel();
+            try{
+                while (rs.next()) {
+                    Object[] row = { rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getFloat(4), rs.getString(5) };
+                    mod.addRow(row);
+                }
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Datos incorrectos");
+            }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void comboCatPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboCatPropertyChange
-
-    }//GEN-LAST:event_comboCatPropertyChange
-
-    private void comboCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCatActionPerformed
-       
-    }//GEN-LAST:event_comboCatActionPerformed
-
     private void comboCatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCatItemStateChanged
-        try{          
+        try{
             int itemCount = this.comboSub.getItemCount();
 
             for(int i=0;i<itemCount;i++){
                 this.comboSub.removeItemAt(0);
-             }
+            }
             String query1 = "begin ? := listarSubCategorias(?); end;";
 
             CallableStatement stmt1 = conn.prepareCall(query1);
@@ -225,6 +236,14 @@ public class iniciarSubasta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_comboCatItemStateChanged
 
+    private void comboCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCatActionPerformed
+
+    }//GEN-LAST:event_comboCatActionPerformed
+
+    private void comboCatPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboCatPropertyChange
+
+    }//GEN-LAST:event_comboCatPropertyChange
+
     /**
      * @param args the command line arguments
      */
@@ -242,20 +261,20 @@ public class iniciarSubasta extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(iniciarSubasta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listarSubastas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(iniciarSubasta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listarSubastas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(iniciarSubasta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listarSubastas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(iniciarSubasta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listarSubastas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new iniciarSubasta().setVisible(true);
+                new listarSubastas().setVisible(true);
             }
         });
     }
@@ -266,11 +285,7 @@ public class iniciarSubasta extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField textDesc;
-    private javax.swing.JTextField textDuracion;
-    private javax.swing.JTextField textPrecio;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }
