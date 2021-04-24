@@ -34,7 +34,7 @@ public class iniciarSubasta extends javax.swing.JFrame {
         ArrayList<String[]> categorias = db.getCategoria();
         Cat.removeAllItems();
         for (String[] str:categorias){
-            Cat.addItem(str[1]);
+            Cat.addItem(str[0]);
         }
     }
     
@@ -91,6 +91,11 @@ public class iniciarSubasta extends javax.swing.JFrame {
         });
 
         SubCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        SubCat.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                SubCatItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,7 +160,7 @@ public class iniciarSubasta extends javax.swing.JFrame {
         } catch (ParseException ex) {
             return;
         }
-        db.iniciarSubasta(this.SubCat.getSelectedIndex() + 1, this.textDesc.getText(), Integer.parseInt(this.textPrecio.getText()), fechaMax);
+        db.iniciarSubasta((String)this.Cat.getSelectedItem(), (String)this.SubCat.getSelectedItem(), this.textDesc.getText(), Integer.parseInt(this.textPrecio.getText()), fechaMax);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CatActionPerformed
@@ -167,9 +172,14 @@ public class iniciarSubasta extends javax.swing.JFrame {
         System.out.println(Cat.getSelectedIndex());
         SubCat.removeAllItems();
         for (String[] str:categorias){
-            SubCat.addItem(str[1]);
+            SubCat.addItem(str[0]);
         }
     }//GEN-LAST:event_CatItemStateChanged
+
+    private void SubCatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_SubCatItemStateChanged
+        db.getSubCategoria( (String) Cat.getSelectedItem() );
+        
+    }//GEN-LAST:event_SubCatItemStateChanged
 
     /**
      * @param args the command line arguments

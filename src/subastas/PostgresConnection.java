@@ -73,7 +73,7 @@ public class PostgresConnection {
                 return "a";
             }   
             else{
-                return "p";
+                return "part";
             }
         }
         catch(SQLException e){
@@ -83,7 +83,7 @@ public class PostgresConnection {
         
     }
     
-    public boolean agregarParticipante(int cedula, String alias, String nombre, String direccion, int telCelular, int telCasa, int telTrabajo, int telOtro, String pass){
+    public boolean agregarParticipante(int cedula, String alias, String nombre, String direccion, int telCelular, int telCasa, int telTrabajo, int telOtro, String pass, String correo){
         try {
             statement = db.prepareStatement("call agregarParticipante (?,?,?,?,?,?,?,?,?,?)");
             statement.setInt(1, cedula);
@@ -95,6 +95,7 @@ public class PostgresConnection {
             statement.setInt(7, telTrabajo);
             statement.setInt(8, telOtro);
             statement.setString(9, pass);
+            statement.setString(10, correo);
             ResultSet res = statement.executeQuery();
             return res.next();
             
@@ -105,7 +106,7 @@ public class PostgresConnection {
         return false;
     }
     
-    public boolean agregarAdmin(int cedula, String alias, String nombre, String direccion, int telCelular, int telCasa, int telTrabajo, int telOtro, String pass){
+    public boolean agregarAdmin(int cedula, String alias, String nombre, String direccion, int telCelular, int telCasa, int telTrabajo, int telOtro, String pass, String correo){
         try {
             statement = db.prepareStatement("call agregarAdministrador (?,?,?,?,?,?,?,?,?,?)");
             statement.setInt(1, cedula);
@@ -116,7 +117,8 @@ public class PostgresConnection {
             statement.setInt(6, telCasa);
             statement.setInt(7, telTrabajo);
             statement.setInt(8, telOtro);
-            statement.setString(9, pass);
+            statement.setString(9,correo);
+            statement.setString(10, pass);
             ResultSet res = statement.executeQuery();
             return res.next();
             
@@ -127,13 +129,14 @@ public class PostgresConnection {
         return false;
     }
     
-     public void iniciarSubasta( int subcategoria, String descripcion, double precio, Date fechaMaxima){
+     public void iniciarSubasta( String categoria,String subcategoria, String descripcion, double precio, Date fechaMaxima){
          try{
-             statement = db.prepareStatement("call iniciarSubasta(?, ?, ?, ?)");
-             statement.setInt(1, subcategoria);
-             statement.setString(2,descripcion);
-             statement.setDouble(3, precio);
-             statement.setDate(4,new java.sql.Date(fechaMaxima.getTime()));
+             statement = db.prepareStatement("call iniciarSubasta(?, ?, ?, ?, ?)");
+             statement.setString(1, categoria);
+             statement.setString(2, subcategoria);
+             statement.setString(3,descripcion);
+             statement.setDouble(4, precio);
+             statement.setDate(5,new java.sql.Date(fechaMaxima.getTime()));
              statement.executeQuery(); 
          }catch(SQLException e){
              System.err.println(e.getMessage());
@@ -238,7 +241,7 @@ public class PostgresConnection {
     
     public ArrayList<String[]> getCategoria(){
           try{
-             statement=db.prepareStatement("select listarcategorias ()");
+             statement=db.prepareStatement("select listarcategorias()");
             ResultSet rs = statement.executeQuery();
             ArrayList<String[]> categorias = new ArrayList<String[]>();
             while(rs.next()){
@@ -276,31 +279,13 @@ public class PostgresConnection {
         return categorias;
     }
     
-    public ArrayList<String[]> getMisSubastas(){
-        ArrayList<String[]> categorias = new ArrayList<String[]>();
-          try{
-             statement=db.prepareStatement("select subastasusuarioactual()");
-            ResultSet rs = statement.executeQuery();
-            
-            while(rs.next()){
-                String d= rs.getString(1);
-                d = d.replace("(", "");
-                d = d.replace(")", "");
-                String[] res = d.split(",");
-                categorias.add(res);
-            }
-            return categorias;
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }  
-        return categorias;
-    }
-    
+
     
     public ArrayList<String[]> getSubastasGanadas(String nombre){
         ArrayList<String[]> categorias = new ArrayList<String[]>();
           try{
-             statement=db.prepareStatement("select subastasganadas()");
+             statement=db.prepareStatement("select subastasganadas(?)");
+             statement.setString(1,nombre);
             ResultSet rs = statement.executeQuery();
             
             while(rs.next()){
@@ -317,10 +302,12 @@ public class PostgresConnection {
         return categorias;
     }
     
-    public ArrayList<String[]> getSubastasGanadas(){
+    
+    public ArrayList<String[]> getSubastasUsuario(String nombre){
         ArrayList<String[]> categorias = new ArrayList<String[]>();
           try{
-             statement=db.prepareStatement("select subastasganadas()");
+             statement=db.prepareStatement("select subastasganadas(?)");
+             statement.setString(1,nombre);
             ResultSet rs = statement.executeQuery();
             
             while(rs.next()){
@@ -335,6 +322,19 @@ public class PostgresConnection {
             System.out.println(e.getMessage());
         }  
         return categorias;
+    }
+    
+    public boolean modificarValores(Double mej, Double inc){
+        try{
+             statement=db.prepareStatement("call modificarValores(?, ?)");
+             statement.setBigDecimal(1, BigDecimal.valueOf(mej));
+             statement.setBigDecimal(2, BigDecimal.valueOf(inc));
+            ResultSet rs = statement.executeQuery();
+            return true;
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            return false;
+        }  
     }
     
     
